@@ -1,0 +1,24 @@
+body {
+    background: rgb(81, 81, 123);
+}
+
+.background-white {
+    background-color: rgba(240, 248, 255,0.8);
+}
+
+.background-black {
+    background-color: rgba(48, 48, 48, 0.8);
+}
+
+.dropshadow-black {
+    filter: drop-shadow(2px 2px 5px black);
+}
+
+.rounded {
+    border-radius: 10px;
+}
+
+body * {
+    transition: all 2s;
+}
+
