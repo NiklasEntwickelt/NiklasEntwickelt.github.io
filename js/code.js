@@ -917,11 +917,6 @@ function setClipboard(text) {
 }
 
 
-    document.querySelector("#timeline-1").before(document.querySelector(`#timeline-${document.querySelector("#timeline").children.length}`))
-    updateTimeline();
-}
-
-
 
 const startSaveScheduler = async () =>  {
     //check if already running 
