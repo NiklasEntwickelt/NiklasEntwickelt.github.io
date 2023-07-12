@@ -879,6 +879,24 @@ const exportTasksAsRawText = () => {
 
 //utility set text to clipboard
 function setClipboard(text) {
+    //dirty code
+
+      /* Get the text field */
+      var copyText = document.getElementById("exportArea");
+    
+      /* Select the text field */
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); /* For mobile devices */
+    
+      /* Copy the text inside the text field */
+      navigator.clipboard.writeText(copyText.value);
+
+    
+      
+      /* Alert the copied text */
+      alert("Copied the text: " + copyText.value);
+    
+    //real code
     const type = "text/html";
     const blob = new Blob([text], { type });
     const data = [new ClipboardItem({ [type]: blob })];
@@ -898,14 +916,6 @@ function setClipboard(text) {
     );
 }
 
-
-//TODO not done, move cell to new location
-const moveCell = (timelineIndexFrom,timelineIndexTo) => {
-    /*
-        Create a new Element at choosen Spot.
-        Update List Sorting to include new Element
-        Loop through old data copy all innerHTML of each field into new field
-    */
 
     document.querySelector("#timeline-1").before(document.querySelector(`#timeline-${document.querySelector("#timeline").children.length}`))
     updateTimeline();
