@@ -819,7 +819,7 @@ function setClipboard(text) {
     const data = [new ClipboardItem({ [type]: blob })];
 
 
-    createToast("debug",`${navigator.clipboard}`,"-",""};
+    createToast("debug",`${navigator.clipboard}`,"-","");
     
     navigator.clipboard.write(data).then(
         () => {
