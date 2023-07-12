@@ -829,7 +829,7 @@ const exportTasksAsRawText = () => {
     
     textExport.innerHTML += `${document.querySelector("#date").innerText}`;
     textExport.innerHTML += `${document.querySelector("#company").innerText} von ${document.querySelector("#userName").innerText}`;
-    textExport.innerHTML +=  `
+
     
     let textExportWrapper = document.querySelector("#textExportWrapper");
     
@@ -838,7 +838,7 @@ const exportTasksAsRawText = () => {
     switch(cell){
         //this is the time cell
         case 1:
-            textExportWrapper.innerHTML += `<br> ${value} `;
+            textExportWrapper.innerHTML += `<br> ${value}: `;
         break;
             
         //this is the task cell
