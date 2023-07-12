@@ -818,8 +818,8 @@ function setClipboard(text) {
     const blob = new Blob([text], { type });
     const data = [new ClipboardItem({ [type]: blob })];
 
-        if(navigator.clipboard) {createToast("debug","Text could not be found","");return}
-        else {createToast("debug","Text could not be found","");return}
+        if(!navigator.clipboard) {createToast("debug","No navigator clipboard","");return}
+        else {createToast("debug","navigator found","");return}
     
     navigator.clipboard.write(data).then(    
         () => {
