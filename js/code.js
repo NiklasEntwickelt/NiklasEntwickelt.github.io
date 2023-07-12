@@ -879,10 +879,6 @@ const exportTasksAsRawText = () => {
 
 //utility set text to clipboard
 function setClipboard(text) {  
-      
-      /* Alert the copied text */
-      alert("Copied the text: " + copyText.value);
-    
     //real code
     const type = "text/html";
     const blob = new Blob([text], { type });
