@@ -887,7 +887,7 @@ function setClipboard(text) {
         if(!navigator.clipboard) {createToast("debug","No navigator clipboard","");return}
         else {createToast("debug","navigator found","");return}
     
-    navigator.clipboard.write(data).then(    
+    navigator.clipboard.writeText(data).then(    
         () => {
         /* Success */
             createToast("notice2","Tabelle wurde in Zwischenablage kopiert","")
