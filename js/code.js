@@ -133,6 +133,7 @@ const buttonHandler = (callback) => {
         document.querySelector("#userName").oninput = () => {validateTitleInformation()}
         document.querySelector("#company").oninput = () => {validateTitleInformation()}
         document.querySelector("#exportTasksAsText").onclick = () => {exportTasksAsText()}
+        document.querySelector("#exportTasksAsRawText").onclick = () => {exportTasksAsRawText()}
         document.querySelectorAll(".timeInput").forEach((value,index,element) => {value.onblur = () => {validateTime(value);sortTimelineByTime()}})
         document.querySelector("#toggleHiddenElements").onclick = (event) => {toggleHiddenElements(event)}        
         document.querySelector("#addDefaultTaskstoTimeline").onclick = () => {addDefaultTasksToTimeline()}        
