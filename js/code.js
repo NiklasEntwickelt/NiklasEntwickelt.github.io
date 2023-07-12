@@ -819,8 +819,8 @@ function setClipboard(text) {
     const data = [new ClipboardItem({ [type]: blob })];
 
     if(navigator.clipboard) 
-    {createToast("notice3","Clipboard permissions")} else
-    {createToast("notice3","Keine Clipboard permissions")}
+    {createToast("notice3","Clipboard permissions","")} else
+    {createToast("notice3","Keine Clipboard permissions","")}
     navigator.clipboard.write(data).then(
         () => {
         /* Success */
