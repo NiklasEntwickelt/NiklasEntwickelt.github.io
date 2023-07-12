@@ -830,26 +830,24 @@ const exportTasksAsRawText = () => {
     textExport.innerHTML += `${document.querySelector("#date").innerText}`;
     textExport.innerHTML += `${document.querySelector("#company").innerText} von ${document.querySelector("#userName").innerText}`;
 
-    
-    let textExportWrapper = document.querySelector("#textExportWrapper");
-    
+        
     exportString.forEach((value,index) => {
         
     switch(cell){
         //this is the time cell
         case 1:
-            textExportWrapper.innerHTML += `<br> ${value}: `;
+            textExport.innerHTML += `<br> ${value}: `;
         break;
             
         //this is the task cell
         case 2:
-            textExportWrapper.innerHTML += ` -${value}- `;
+            textExport.innerHTML += ` -${value}- `;
         break;
             
             //this is the comment cell
             case 3:
                 if(value.length >= 1) {
-                    textExportWrapper.innerHTML += ` | Anmerkungen: ${value}: `;  
+                    textExport.innerHTML += ` | Anmerkungen: ${value}: `;  
                 
                     cell = 0;
                 } else {
