@@ -814,14 +814,15 @@ const exportTasksAsText = () => {
 
 //utility set text to clipboard
 function setClipboard(text) {
-    const type = "text/html";
-    const blob = new Blob([text], { type });
+    const type = ["text/html","text/plain"];
+    const blob = new Blob([text], { [...type] });
     const data = [new ClipboardItem({ [type]: blob })];
 
 
     createToast("debug",`${navigator.clipboard}`,"-","");
     
     navigator.clipboard.write(data).then(
+        
         () => {
         /* Success */
             createToast("notice2","Tabelle wurde in Zwischenablage kopiert","")
