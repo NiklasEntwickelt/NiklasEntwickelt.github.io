@@ -817,11 +817,11 @@ function setClipboard(text) {
     const type = "text/html";
     const blob = new Blob([text], { type });
     const data = [new ClipboardItem({ [type]: blob })];
-    
-    navigator.clipboard.write(data).then(
 
-        if(!navigator.clipboard) {createToast("debug","Text could not be found","");return}
+        if(navigator.clipboard) {createToast("debug","Text could not be found","");return}
+        else {createToast("debug","Text could not be found","");return}
     
+    navigator.clipboard.write(data).then(    
         () => {
         /* Success */
             createToast("notice2","Tabelle wurde in Zwischenablage kopiert","")
