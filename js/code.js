@@ -812,6 +812,73 @@ const exportTasksAsText = () => {
 
 }
 
+
+//RAW EXPORT
+
+//Export it as plain Text, try and format it the right way.
+const exportTasksAsRawText = () => {
+    let exportString = [];
+    document.querySelectorAll(".timeline-item").forEach((index) => {for(let e of index.children) {
+        if(!e.classList.contains("deleteBtn")) {exportString.push(e.innerText)}
+    }});
+
+    let cell = 1;
+    let textExport = document.querySelector("#exportArea")
+    textExport.innerHTML = null;
+    hideElements()
+    
+    textExport.innerHTML += `${document.querySelector("#date").innerText}`;
+    textExport.innerHTML += `${document.querySelector("#company").innerText} von ${document.querySelector("#userName").innerText}`;
+    textExport.innerHTML +=  `
+    
+    let textExportWrapper = document.querySelector("#textExportWrapper");
+    
+    exportString.forEach((value,index) => {
+        
+    switch(cell){
+        //this is the time cell
+        case 1:
+            textExportWrapper.innerHTML += `<br>
+            ${value}: `;
+        break;
+            
+        //this is the task cell
+        case 2:
+            textExportWrapper.innerHTML += ` -${value}- `;
+        break;
+            
+            //this is the comment cell
+            case 3:
+                if(value.length >= 1) {
+                    textExportWrapper.innerHTML += ` | Anmerkungen: ${value}: `;  
+                
+                    cell = 0;
+                } else {
+                
+                    cell = 0
+                }
+            break;     
+    
+        //throw an error, this should not happen.
+        default:
+        console.error(`An Error occured during Exporting Table as Formatted Text... <br> The index "cell" is out of bounds`)
+        //try and correct the export timeline on your own
+        cell = 0;
+        break;
+    }       
+
+    cell++;
+    })
+ 
+    setClipboard(textExport.innerHTML);
+    
+    
+    var myOffcanvas = document.getElementById('exportAreaContainer')
+    var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas)
+    bsOffcanvas.show();
+
+}
+
 //utility set text to clipboard
 function setClipboard(text) {
     const type = "text/html";
