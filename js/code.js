@@ -838,7 +838,7 @@ const exportTasksAsRawText = () => {
     switch(cell){
         //this is the time cell
         case 1:
-            textExportWrapper.innerHTML += `<br> ${value}: `;
+            textExportWrapper.innerHTML += `<br> ${value} `;
         break;
             
         //this is the task cell
