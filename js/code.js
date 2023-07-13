@@ -886,7 +886,8 @@ function setClipboard(text) {
     navigator.clipboard.write(data).then(
         () => {
         /* Success */
-            createToast("notice2","Tabelle wurde in Zwischenablage kopiert","")
+            createToast("notice2","Tabelle wurde in Zwischenablage kopiert","");
+            createToast("debug2","debug table",data);
         },
         () => {
         /* failure */
