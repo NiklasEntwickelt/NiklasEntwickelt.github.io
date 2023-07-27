@@ -48,26 +48,30 @@ let commentCellBorderColor = "transparent";
 //storageAcceptance
 const storageAcceptance = () => {
 
-    //initate buttons on modal
-    
-    
-    //check for the value and return value as selected, defaulting to disallowing and halting the execution of code.
-    try {
-        const LOCALSTORAGEMODAL = new bootstrap.Modal(document.getElementById('localstoragemodal'));
-        LOCALSTORAGEMODAL.show();
-        let localStorageModalAccepted = false; 
+    //initate main value for passing
+    let localStorageModalAccepted = false; 
 
-        
-        
-        return localStorageModalAccepted;
-    } catch(err) {
-      //...errors
-        console.log("error:",err);
+    const localStorageModalValidate = (acceptedBool) => {
+        //check for the value and return value as selected, defaulting to disallowing and halting the execution of code.
+        try {
+            const LOCALSTORAGEMODAL = new bootstrap.Modal(document.getElementById('localstoragemodal'));
+            LOCALSTORAGEMODAL.show();
+            
+            
+            console.log("acceptance",acceptedBool);
+            return acceptedBool;
+        } catch(err) {
+            //...errors
+            console.log("error:",err);
+        }
+
     }
 
+    //initate buttons on modal
+    document.querySelector("#localstoragemodalagreebtn").onclick = () => {return localStorageModalValidate(true) }
+    document.querySelector("#localstoragemodalclosebtn").onclick = () => {return localStorageModalValidate(false) }
 
 
-    
 }
 
 //Once page content is loaded
