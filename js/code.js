@@ -12,13 +12,13 @@ today = today.toLocaleDateString('de-DE',optcells);
 //format title elements
 let userNameTemplate = "%userName%";
 let userName = userNameTemplate;
-if(localStorage.getItem("userName") != null) {
+if(localStorage.getItem("userName") != null && canSaveToLocalStorage) {
     userName = localStorage.getItem("userName");
 }
 
 let companyTemplate = "%Firma%";
 let company = companyTemplate;
-if(localStorage.getItem("company") != null) {
+if(localStorage.getItem("company") != null && canSaveToLocalStorage) {
     company = localStorage.getItem("company");
 }
 
@@ -45,6 +45,9 @@ let commentCellTextColor = baseTextColor;
 let commentCellTextShadowColor = baseTextShadowColor;
 let commentCellBorderColor = "transparent";
 
+//localstorage
+let canSaveToLocalStorage = false;
+
 //make modal available to both code sections
 const LOCALSTORAGEMODAL = new bootstrap.Modal(document.getElementById('localstoragemodal'));
 
@@ -54,30 +57,28 @@ const storageAcceptance = () => {
 
     if(localStorage.getItem("ls") != null && localStorage.getItem("ls") == "accepted") return true;
 
-    //dangerous, but assume they are there, show modal
+    //dangerous, but assume it exist, show modal
     LOCALSTORAGEMODAL.show();
 
     //initate buttons on modal
-    document.querySelector("#localstoragemodalagreebtn").onclick = () => {LOCALSTORAGEMODAL.hide();localStorage.setItem("ls","accepted");location.reload();return true; }
-    document.querySelector("#localstoragemodalclosebtn").onclick = () => {document.querySelector("#timecard");LOCALSTORAGEMODAL.hide();return false; }
+    document.querySelector("#localstoragemodalagreebtn").onclick = () => {LOCALSTORAGEMODAL.hide();localStorage.setItem("ls","accepted");location.reload();return true;}
+    document.querySelector("#localstoragemodalclosebtn").onclick = () => {LOCALSTORAGEMODAL.hide();return false; }
     return false;
     
 }
 
-if(!storageAcceptance()) {
-    document.body.innerHTML = "";
-    LOCALSTORAGEMODAL.hide();
-    createToast("err","Funktionalität der Webseite kann nicht gesichert werden!","");
-    throw "erorr";
-} else {
-    createToast("err","Lade Daten!","");
-}
-
-
-
 
 //Once page content is loaded
 window.addEventListener("DOMContentLoaded",() => {
+
+    if(!storageAcceptance()) {
+        canSaveToLocalStorage = false;
+        LOCALSTORAGEMODAL.hide();
+        createToast("err","Funktionalität der Webseite kann nicht gesichert werden!","");
+    } else {
+        canSaveToLocalStorage = true;
+        createToast("err","Lade Daten!","");
+    }
     
     //Create an Automatic filled out Banner
     document.querySelector("#title").innerHTML = `<span id="company" contenteditable>${company}</span> - <span id="userName" contenteditable>${userName}</span>, <span contenteditable id="date">${today}</span>`;
@@ -85,16 +86,18 @@ window.addEventListener("DOMContentLoaded",() => {
     //Grab previous stored localdata and repopulate the table with it
     if(localStorage.getItem("timeline") != null) {
         try {
-            console.log("Loading data from Save...");
-            createToast("saveNotification","Daten werden aus Speicher geladen..","")
-            removeAllEntries();
-            var timeline = localStorage.getItem("timeline");
-            var defaultTimeline = localStorage.getItem("default-timeline");
-        
-            document.querySelector("#timeline").innerHTML = timeline;
-            document.querySelector("#default-timeline").innerHTML = defaultTimeline;
-
-            updateTimeline();
+            if(canSaveToLocalStorage) {
+                 console.log("Loading data from Save...");
+                createToast("saveNotification","Daten werden aus Speicher geladen..","")
+                removeAllEntries();
+                var timeline = localStorage.getItem("timeline");
+                var defaultTimeline = localStorage.getItem("default-timeline");
+            
+                document.querySelector("#timeline").innerHTML = timeline;
+                document.querySelector("#default-timeline").innerHTML = defaultTimeline;
+    
+                updateTimeline();   
+            }
         } catch (err) {console.error("An Error has occured ",err);} 
         console.log("Successfully loaded data from Saved LocalStorage");
         
@@ -116,12 +119,16 @@ window.addEventListener("DOMContentLoaded",() => {
 const saveData =  (cause) => {
     let timeline = document.querySelector("#timeline").innerHTML;
     let defaultTime = document.querySelector("#default-timeline").innerHTML;
-    localStorage.setItem("timeline",timeline);
-    localStorage.setItem("default-timeline",defaultTime);
+    if(canSaveToLocalStorage) {
+         localStorage.setItem("timeline",timeline);
+        localStorage.setItem("default-timeline",defaultTime);   
+    } else {
+        createToast("err","No Permission to Save to Timeline","Wir können die Daten nicht Speichern da Sie keine Berechtigung erteilt haben");
+    }
     
     switch(cause) {
         case "autosave":
-            console.log("Savinvg timeline in Localstorage...")
+            console.log("Saving timeline in Localstorage...")
         break;
         default:
             console.log("Saving timeline in Localstorage...")
@@ -259,8 +266,11 @@ const validateTitleInformation = () => {
 
     //TODO : ADD CHECKSUM FOR COMPANY AND FIX COLOR ISSUE-
 
-    userName = localStorage.setItem("userName",document.querySelector("#userName").innerText);
-    company = localStorage.setItem("company",document.querySelector("#company").innerText);
+    if(canSaveToLocalStorage) {
+        userName = localStorage.setItem("userName",document.querySelector("#userName").innerText);
+        company = localStorage.setItem("company",document.querySelector("#company").innerText);
+    }
+
 
 }
 
