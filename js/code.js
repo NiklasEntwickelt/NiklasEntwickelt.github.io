@@ -1,5 +1,5 @@
 //GLOBAL SETUP VARIABLES
-let debug = false;e
+let debug = false;
 let saveSchedulerRunning = false;
 
 //localstorage
