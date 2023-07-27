@@ -68,7 +68,7 @@ if(!storageAcceptance()) {
     document.body.innerHTML = "";
     LOCALSTORAGEMODAL.hide();
     createToast("err","Funktionalität der Webseite kann nicht gesichert werden!","");
-    return;
+    die("sorry my fault");
 } else {
     createToast("err","Lade Daten!","");
 }
