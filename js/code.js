@@ -48,20 +48,22 @@ let commentCellBorderColor = "transparent";
 //storageAcceptance
 const storageAcceptance = () => {
 
+    if(localStorage.getItem("ls") != null && localStorage.getItem("ls") == "accepted") return;
+
     //dangerous, but assume they are there, show modal
     const LOCALSTORAGEMODAL = new bootstrap.Modal(document.getElementById('localstoragemodal'));
     LOCALSTORAGEMODAL.show();
 
     //initate buttons on modal
-    document.querySelector("#localstoragemodalagreebtn").onclick = () => {LOCALSTORAGEMODAL.hide();return true; }
+    document.querySelector("#localstoragemodalagreebtn").onclick = () => {createToast("err","Funktionalität der Webseite kann nicht gesichert werden!","");LOCALSTORAGEMODAL.hide();localStorage.setItem("ls","accepted");location.reload();return true; }
     document.querySelector("#localstoragemodalclosebtn").onclick = () => {document.body.innerHTML = "";LOCALSTORAGEMODAL.hide();return false; }
     return false;
+    
 }
 
 //Once page content is loaded
 window.addEventListener("DOMContentLoaded",() => {
-
-
+    storageAcceptance()
     
     //Create an Automatic filled out Banner
     document.querySelector("#title").innerHTML = `<span id="company" contenteditable>${company}</span> - <span id="userName" contenteditable>${userName}</span>, <span contenteditable id="date">${today}</span>`;
