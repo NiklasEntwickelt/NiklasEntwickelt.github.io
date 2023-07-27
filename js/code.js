@@ -51,8 +51,10 @@ const LOCALSTORAGEMODAL = new bootstrap.Modal(document.getElementById('localstor
 //storageAcceptance
 const storageAcceptance = () => {
 
-    if(localStorage.getItem("ls") != null && localStorage.getItem("ls") == "accepted") return true;
+    console.log("Checking if user allows localstorage");
+    if(localStorage.getItem("ls") != null && localStorage.getItem("ls") == "accepted") {console.log("user is allowing localstorage");return true};
 
+    console.log("user did not allow localstorage ... proceding to show modal");
     //dangerous, but assume it exist, show modal
     LOCALSTORAGEMODAL.show();
 
