@@ -48,28 +48,16 @@ let commentCellBorderColor = "transparent";
 //storageAcceptance
 const storageAcceptance = () => {
 
+    //dangerous, but assume they are there, show modal
+    const LOCALSTORAGEMODAL = new bootstrap.Modal(document.getElementById('localstoragemodal'));
+    LOCALSTORAGEMODAL.show();
+
     //initate main value for passing
     let localStorageModalAccepted = false; 
 
-    const localStorageModalValidate = (acceptedBool) => {
-        //check for the value and return value as selected, defaulting to disallowing and halting the execution of code.
-        try {
-            const LOCALSTORAGEMODAL = new bootstrap.Modal(document.getElementById('localstoragemodal'));
-            LOCALSTORAGEMODAL.show();
-            
-            
-            console.log("acceptance",acceptedBool);
-            return acceptedBool;
-        } catch(err) {
-            //...errors
-            console.log("error:",err);
-        }
-
-    }
-
     //initate buttons on modal
-    document.querySelector("#localstoragemodalagreebtn").onclick = () => {return localStorageModalValidate(true) }
-    document.querySelector("#localstoragemodalclosebtn").onclick = () => {return localStorageModalValidate(false) }
+    document.querySelector("#localstoragemodalagreebtn").onclick = () => {return true }
+    document.querySelector("#localstoragemodalclosebtn").onclick = () => {return false }
 
 
 }
