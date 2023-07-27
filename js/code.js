@@ -64,8 +64,13 @@ const storageAcceptance = () => {
     
 }
 
-if(!storageAcceptance()) {document.body.innerHTML = "";LOCALSTORAGEMODAL.hide();return} else {
+if(!storageAcceptance()) {
+    document.body.innerHTML = "";
+    LOCALSTORAGEMODAL.hide();
     createToast("err","Funktionalität der Webseite kann nicht gesichert werden!","");
+    return;
+} else {
+    createToast("err","Lade Daten!","");
 }
 
 
