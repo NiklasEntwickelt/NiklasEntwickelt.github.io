@@ -54,7 +54,7 @@ const storageAcceptance = () => {
 
     //initate buttons on modal
     document.querySelector("#localstoragemodalagreebtn").onclick = () => {LOCALSTORAGEMODAL.hide();return true; }
-    document.querySelector("#localstoragemodalclosebtn").onclick = () => {document.body.innerHTML = "";LOCALSTORAGEMODAL.hide();return false; }
+    document.querySelector("#localstoragemodalclosebtn").onclick = () => {LOCALSTORAGEMODAL.hide();return false; }
     return false;
 }
 
@@ -63,7 +63,7 @@ window.addEventListener("DOMContentLoaded",() => {
 
     
     if(!storageAcceptance()) {
-       document.getElementByTag("body").
+        document.body.innerHTML = "";
         return;
     }
     
