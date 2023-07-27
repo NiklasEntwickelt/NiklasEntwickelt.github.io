@@ -45,6 +45,9 @@ let commentCellTextColor = baseTextColor;
 let commentCellTextShadowColor = baseTextShadowColor;
 let commentCellBorderColor = "transparent";
 
+
+
+//before page is loaded
 //storageAcceptance
 const storageAcceptance = () => {
 
@@ -55,15 +58,21 @@ const storageAcceptance = () => {
     LOCALSTORAGEMODAL.show();
 
     //initate buttons on modal
-    document.querySelector("#localstoragemodalagreebtn").onclick = () => {createToast("err","Funktionalität der Webseite kann nicht gesichert werden!","");LOCALSTORAGEMODAL.hide();localStorage.setItem("ls","accepted");location.reload();return true; }
+    document.querySelector("#localstoragemodalagreebtn").onclick = () => {LOCALSTORAGEMODAL.hide();localStorage.setItem("ls","accepted");location.reload();return true; }
     document.querySelector("#localstoragemodalclosebtn").onclick = () => {document.body.innerHTML = "";LOCALSTORAGEMODAL.hide();return false; }
     return false;
     
 }
 
+if(!storageAcceptance()) {document.body.innerHTML = "";LOCALSTORAGEMODAL.hide();return} else {
+    createToast("err","Funktionalität der Webseite kann nicht gesichert werden!","");
+}
+
+
+
+
 //Once page content is loaded
 window.addEventListener("DOMContentLoaded",() => {
-    storageAcceptance()
     
     //Create an Automatic filled out Banner
     document.querySelector("#title").innerHTML = `<span id="company" contenteditable>${company}</span> - <span id="userName" contenteditable>${userName}</span>, <span contenteditable id="date">${today}</span>`;
