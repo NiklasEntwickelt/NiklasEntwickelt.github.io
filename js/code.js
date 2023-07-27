@@ -50,7 +50,10 @@ console.log("EEEEK2");
 
 //Once page content is loaded
 window.addEventListener("DOMContentLoaded",() => {
-    
+
+    //Checksum for localdata use
+    //localdatacheck
+
     //Create an Automatic filled out Banner
     document.querySelector("#title").innerHTML = `<span id="company" contenteditable>${company}</span> - <span id="userName" contenteditable>${userName}</span>, <span contenteditable id="date">${today}</span>`;
 
