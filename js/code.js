@@ -45,16 +45,16 @@ let commentCellTextColor = baseTextColor;
 let commentCellTextShadowColor = baseTextShadowColor;
 let commentCellBorderColor = "transparent";
 
-
+//make modal available to both code sections
+const LOCALSTORAGEMODAL = new bootstrap.Modal(document.getElementById('localstoragemodal'));
 
 //before page is loaded
 //storageAcceptance
 const storageAcceptance = () => {
 
-    if(localStorage.getItem("ls") != null && localStorage.getItem("ls") == "accepted") return;
+    //if(localStorage.getItem("ls") != null && localStorage.getItem("ls") == "accepted") return;
 
     //dangerous, but assume they are there, show modal
-    const LOCALSTORAGEMODAL = new bootstrap.Modal(document.getElementById('localstoragemodal'));
     LOCALSTORAGEMODAL.show();
 
     //initate buttons on modal
