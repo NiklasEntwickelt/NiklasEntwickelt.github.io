@@ -52,14 +52,14 @@ const LOCALSTORAGEMODAL = new bootstrap.Modal(document.getElementById('localstor
 //storageAcceptance
 const storageAcceptance = () => {
 
-    //if(localStorage.getItem("ls") != null && localStorage.getItem("ls") == "accepted") return;
+    if(localStorage.getItem("ls") != null && localStorage.getItem("ls") == "accepted") return true;
 
     //dangerous, but assume they are there, show modal
     LOCALSTORAGEMODAL.show();
 
     //initate buttons on modal
     document.querySelector("#localstoragemodalagreebtn").onclick = () => {LOCALSTORAGEMODAL.hide();localStorage.setItem("ls","accepted");location.reload();return true; }
-    document.querySelector("#localstoragemodalclosebtn").onclick = () => {document.body.innerHTML = "";LOCALSTORAGEMODAL.hide();return false; }
+    document.querySelector("#localstoragemodalclosebtn").onclick = () => {document.querySelector("#timecard");LOCALSTORAGEMODAL.hide();return false; }
     return false;
     
 }
@@ -68,7 +68,7 @@ if(!storageAcceptance()) {
     document.body.innerHTML = "";
     LOCALSTORAGEMODAL.hide();
     createToast("err","Funktionalität der Webseite kann nicht gesichert werden!","");
-    die("sorry my fault");
+    throw "erorr";
 } else {
     createToast("err","Lade Daten!","");
 }
