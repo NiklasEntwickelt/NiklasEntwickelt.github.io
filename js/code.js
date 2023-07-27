@@ -45,15 +45,37 @@ let commentCellTextColor = baseTextColor;
 let commentCellTextShadowColor = baseTextShadowColor;
 let commentCellBorderColor = "transparent";
 
+//storageAcceptance
+const storageAcceptance = () => {
 
-console.log("EEEEK2");
+    //initate buttons on modal
+    
+    
+    //check for the value and return value as selected, defaulting to disallowing and halting the execution of code.
+    try {
+        const LOCALSTORAGEMODAL = new bootstrap.Modal(document.getElementById('localstoragemodal'));
+        LOCALSTORAGEMODAL.show();
+        let localStorageModalAccepted = false; 
+
+        
+        
+        return localStorageModalAccepted;
+    } catch(err) {
+      //...errors
+        console.log("error:",err);
+    }
+
+
+
+    
+}
 
 //Once page content is loaded
 window.addEventListener("DOMContentLoaded",() => {
 
-    //Checksum for localdata use
-    //localdatacheck
-
+    
+    if(!storageAcceptance()) {return;}
+    
     //Create an Automatic filled out Banner
     document.querySelector("#title").innerHTML = `<span id="company" contenteditable>${company}</span> - <span id="userName" contenteditable>${userName}</span>, <span contenteditable id="date">${today}</span>`;
 
