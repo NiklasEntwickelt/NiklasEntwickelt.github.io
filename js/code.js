@@ -54,7 +54,7 @@ const storageAcceptance = () => {
 
     //initate buttons on modal
     document.querySelector("#localstoragemodalagreebtn").onclick = () => {LOCALSTORAGEMODAL.hide();return true; }
-    document.querySelector("#localstoragemodalclosebtn").onclick = () => {LOCALSTROAGEMODAL.hide();return false; }
+    document.querySelector("#localstoragemodalclosebtn").onclick = () => {LOCALSTORAGEMODAL.hide();return false; }
     return false;
 
 }
