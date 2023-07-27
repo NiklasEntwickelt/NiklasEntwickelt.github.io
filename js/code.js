@@ -56,14 +56,16 @@ const storageAcceptance = () => {
     document.querySelector("#localstoragemodalagreebtn").onclick = () => {LOCALSTORAGEMODAL.hide();return true; }
     document.querySelector("#localstoragemodalclosebtn").onclick = () => {LOCALSTORAGEMODAL.hide();return false; }
     return false;
-
 }
 
 //Once page content is loaded
 window.addEventListener("DOMContentLoaded",() => {
 
     
-    if(!storageAcceptance()) {return;}
+    if(!storageAcceptance()) {
+       window.body.innerHTML = "";
+        return;
+    }
     
     //Create an Automatic filled out Banner
     document.querySelector("#title").innerHTML = `<span id="company" contenteditable>${company}</span> - <span id="userName" contenteditable>${userName}</span>, <span contenteditable id="date">${today}</span>`;
