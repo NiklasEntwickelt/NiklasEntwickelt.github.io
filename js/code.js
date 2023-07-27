@@ -52,13 +52,10 @@ const storageAcceptance = () => {
     const LOCALSTORAGEMODAL = new bootstrap.Modal(document.getElementById('localstoragemodal'));
     LOCALSTORAGEMODAL.show();
 
-    //initate main value for passing
-    let localStorageModalAccepted = false; 
-
     //initate buttons on modal
-    document.querySelector("#localstoragemodalagreebtn").onclick = () => {return true }
-    document.querySelector("#localstoragemodalclosebtn").onclick = () => {return false }
-
+    document.querySelector("#localstoragemodalagreebtn").onclick = () => {LOCALSTORAGEMODAL.hide();return true; }
+    document.querySelector("#localstoragemodalclosebtn").onclick = () => {LOCALSTROAGEMODAL.hide();return false; }
+    return false;
 
 }
 
