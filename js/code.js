@@ -15,15 +15,11 @@ today = today.toLocaleDateString('de-DE',optcells);
 //format title elements
 let userNameTemplate = "%userName%";
 let userName = userNameTemplate;
-if(localStorage.getItem("userName") != null && canSaveToLocalStorage) {
-    userName = localStorage.getItem("userName");
-}
+
 
 let companyTemplate = "%Firma%";
 let company = companyTemplate;
-if(localStorage.getItem("company") != null && canSaveToLocalStorage) {
-    company = localStorage.getItem("company");
-}
+
 
 //fix the webregister title
 document.title = `Tagesbericht-${titleToday}-${userName}`;
@@ -78,6 +74,14 @@ window.addEventListener("DOMContentLoaded",() => {
     } else {
         canSaveToLocalStorage = true;
         createToast("err","Lade Daten!","");
+        
+        if(localStorage.getItem("userName") != null && canSaveToLocalStorage) {
+            userName = localStorage.getItem("userName");
+        }
+        
+        if(localStorage.getItem("company") != null && canSaveToLocalStorage) {
+            company = localStorage.getItem("company");
+        }
     }
     
     //Create an Automatic filled out Banner
@@ -952,7 +956,8 @@ const startSaveScheduler = async () =>  {
     const SaveScheduler = async () => {
         await wait(1000*60)
         saveData("autosave");
-        createToast("autosave","Timeline wird im Browser gespeichert...","")
+        if(canSaveToLocalStorage)
+            createToast("autosave","Timeline wird im Browser gespeichert...","")
         SaveScheduler()
     }
 
