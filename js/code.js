@@ -71,7 +71,6 @@ window.addEventListener("DOMContentLoaded",() => {
 
     if(!storageAcceptance()) {
         canSaveToLocalStorage = false;
-        LOCALSTORAGEMODAL.hide();
         createToast("err","Funktionalität der Webseite kann nicht gesichert werden!","");
     } else {
         canSaveToLocalStorage = true;
