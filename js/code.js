@@ -1,6 +1,9 @@
 //GLOBAL SETUP VARIABLES
-let debug = false;
+let debug = false;e
 let saveSchedulerRunning = false;
+
+//localstorage
+let canSaveToLocalStorage = false;
 
 //Get the Current Date and format it so it can be used in titles
 let today = new Date();
@@ -44,9 +47,6 @@ let commentCellColor = "#dee2e6";
 let commentCellTextColor = baseTextColor;
 let commentCellTextShadowColor = baseTextShadowColor;
 let commentCellBorderColor = "transparent";
-
-//localstorage
-let canSaveToLocalStorage = false;
 
 //make modal available to both code sections
 const LOCALSTORAGEMODAL = new bootstrap.Modal(document.getElementById('localstoragemodal'));
