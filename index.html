@@ -26,7 +26,7 @@
   <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
       <div class="btn-group me-2" role="group" aria-label="First group">
         <button class="btn btn-sm btn-primary" id="toggleHiddenElements" visibilitystate="hidden"><i class="bi bi-toggle-on" visibilitystate="shown"></i></button>
-        <button class="btn btn-sm btn-primary" id="toggleOptions"><i class="bi bi-gear"></i></button>
+        <button class="btn btn-sm btn-primary" id="toggleOptions" data-bs-toggle="offcanvas" data-bs-target="#settingsArea" aria-controls="settingsArea"><i class="bi bi-gear"></i></button>
       </div>
     </div>
 
@@ -160,7 +160,7 @@
 
 
 
-
+  <!--Export Area -->
   <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="exportAreaContainer" aria-labelledby="exportAreaLabel" style="width:75%">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="exportAreaContianerLabel">Dein Tagesbericht!</h5>
@@ -170,6 +170,18 @@
     </div>
   </div>
 
+  <!-- Settings -->
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="settingsArea" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Settings</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>To be added.</p>
+    </div>
+  </div>
+
+  
   <script type="text/javascript" src="https://www.jsdelivr.com/package/npm/pdfjs-dist"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.1/html2pdf.bundle.min.js" integrity="sha512-vDKWohFHe2vkVWXHp3tKvIxxXg0pJxeid5eo+UjdjME3DBFBn2F8yWOE0XmiFcFbXxrEOR1JriWEno5Ckpn15A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
