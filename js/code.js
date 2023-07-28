@@ -74,7 +74,6 @@ window.addEventListener("DOMContentLoaded",() => {
         createToast("err","Funktionalität der Webseite kann nicht gesichert werden!","");
     } else {
         canSaveToLocalStorage = true;
-        createToast("err","Lade Daten!","");
         
         if(localStorage.getItem("userName") != null && canSaveToLocalStorage) {
             userName = localStorage.getItem("userName");
@@ -102,6 +101,8 @@ window.addEventListener("DOMContentLoaded",() => {
                 document.querySelector("#default-timeline").innerHTML = defaultTimeline;
     
                 updateTimeline();   
+            } else {
+                 console.error("Cannot load data from Save...");
             }
         } catch (err) {console.error("An Error has occured ",err);} 
         console.log("Successfully loaded data from Saved LocalStorage");
@@ -128,7 +129,8 @@ const saveData =  (cause) => {
          localStorage.setItem("timeline",timeline);
         localStorage.setItem("default-timeline",defaultTime);   
     } else {
-        createToast("err","No Permission to Save to Timeline","Wir können die Daten nicht Speichern da Sie keine Berechtigung erteilt haben");
+        createToast("err","Keine Berechtigung","Es konnte nicht auf Ihre Lokalen Daten zugegrifen werden.");
+        console.log("Permission failed to load Local saved Storage. User has denied access.")
     }
     
     switch(cause) {
