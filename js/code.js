@@ -177,7 +177,8 @@ const buttonHandler = (callback) => {
         document.querySelectorAll(".timeInput").forEach((value,index,element) => {value.onblur = () => {validateTime(value);sortTimelineByTime()}})
         document.querySelector("#toggleHiddenElements").onclick = (event) => {toggleHiddenElements(event)}        
         document.querySelector("#addDefaultTaskstoTimeline").onclick = () => {addDefaultTasksToTimeline()}        
-    
+        document.querySelector("#revokePermLocalStorageBtn").onclick = () => {if(localStorage.getItem("ls") != null) {localStorage.removeItem("ls");location.reload();} else {createToast("notification","Daten nicht entfernt","Daten wurden nicht entfernt, da keine vorhanden sind")}}
+        
         const myOffcanvas = document.getElementById('exportAreaContainer')
         myOffcanvas.addEventListener('hide.bs.offcanvas', event => {
           showElements();
